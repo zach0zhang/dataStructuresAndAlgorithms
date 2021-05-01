@@ -22,6 +22,8 @@ public:
     void addBack(const E& e);
     void removeFront();
     void removeBack();
+
+    void reverse();
 private:
     DNode<E>* header;
     DNode<E>* trailer;
@@ -99,4 +101,23 @@ void DLinkedList<E>::removeFront() {
 template <typename E>
 void DLinkedList<E>::removeBack() {
     remove(trailer->prev);
+}
+
+template <typename E>
+void DLinkedList<E>::reverse()
+{
+    DLinkedList<E> tmp;
+    E tmpElem;
+
+    while (!empty()) {
+        tmpElem = front();
+        removeFront();
+        tmp.addFront(tmpElem);
+    }
+
+    while (!tmp.empty()) {
+        tmpElem = tmp.front();
+        tmp.removeFront();
+        addBack(tmpElem);
+    }
 }

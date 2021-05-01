@@ -1,3 +1,5 @@
+#ifndef SINGLYLINKEDLIST_H
+#define SINGLYLINKEDLIST_H
 template <typename E>
 class SLinkedList;
 
@@ -18,6 +20,9 @@ public:
     const E& front() const;
     void addFront(const E& e);
     void removeFront();
+
+    void reverse();
+
 private:
     SNode<E>* head;
 };
@@ -56,3 +61,39 @@ void SLinkedList<E>::removeFront() {
     delete old;
 }
 
+template <typename E>
+void SLinkedList<E>::reverse()
+{
+    SLinkedList<E> tmp;
+    E tmpElem;
+
+    SNode<E>* firstHead = NULL;
+    SNode<E>* oldNode = NULL;
+    bool firstHeadFlag = false;
+    
+    while (!empty()) {
+        tmpElem = front();
+        removeFront();
+        tmp.addFront(tmpElem);
+    }
+
+    while (!tmp.empty()) {
+
+        tmpElem = tmp.front();
+        tmp.removeFront();
+        
+        SNode<E>* node = new SNode<E>;
+        node->elem = tmpElem;
+        node->next = NULL;
+        if (!firstHeadFlag) {
+            firstHead = node;
+            firstHeadFlag = true;
+        } else
+            oldNode->next = node;
+        oldNode = node;
+    }
+
+    head = firstHead;
+}
+
+#endif

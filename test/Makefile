@@ -12,7 +12,7 @@ RM				:= del
 .PHONY:			all clean
 all:			$(P_NAME)
 $(P_NAME):		$(P_OBJS)
-				$(CXX) $(CPPFLAGS) $(P_OBJS) -o $(P_NAME)
+				$(CXX) -o $(P_NAME) $(P_OBJS) $(CPPFLAGS)
 
 clean:			
 				@- $(RM) $(addprefix $(P_NAME),.exe)

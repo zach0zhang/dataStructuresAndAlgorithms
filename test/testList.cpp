@@ -11,20 +11,29 @@ using namespace std;
 
 static void testSinglyLinkedList()
 {
-    SLinkedList<int> sLink;
+    SLinkedList<int> sList;
 
-    assert(sLink.empty() == true);
+    assert(sList.empty() == true);
 
     for (int i = 0; i < loopNum; i++) {
-        sLink.addFront(i);
-        assert(sLink.front() == i);
+        sList.addFront(i);
+        assert(sList.front() == i);
     }
 
-    assert(sLink.empty() == false);
+    assert(sList.empty() == false);
 
     for (int i = loopNum - 1; i >= loopNum; i++) {
-        assert(sLink.front() == i);
-        sLink.removeFront();
+        assert(sList.front() == i);
+        sList.removeFront();
+    }
+
+    for (int i = 0; i < loopNum; i++) {
+        sList.addFront(i);
+    }
+    sList.reverse();
+    for (int i = 0; i < loopNum; i++) {
+        assert(sList.front() == i);
+        sList.removeFront();
     }
 }
 
@@ -57,6 +66,14 @@ static void testDoublyLinkedList()
     for (int i = 0; i < loopNum; i++) {
         assert(dList.front() == i);
         dList.removeFront();
+    }
+
+    for (int i = 0; i < loopNum; i++)
+        dList.addFront(i);
+    dList.reverse();
+    for (int i = 0; i < loopNum; i++) {
+        assert(dList.front() == i);
+        dList.removeFront();      
     }
 }
 
