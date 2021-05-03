@@ -6,7 +6,6 @@ class CNode {
 private:
     E elem;
     CNode<E>* next;
-
     friend class CircleList<E>;
 };
 
@@ -21,6 +20,8 @@ public:
     void advance();
     void add(const E& e);
     void remove();
+
+    void reverse();
 private:
     CNode<E>* cursor;
 };
@@ -76,5 +77,42 @@ void CircleList<E>::remove() {
         cursor->next = old->next;
 
     delete old;
+}
+
+template <typename E>
+void CircleList<E>::reverse() {
+    
+    CircleList<E> tmp;
+    E tmpElem;
+
+    CNode<E>* firstHead = NULL;
+    CNode<E>* oldNode = NULL;
+    bool firstHeadFlag = false;
+    
+    while (!empty()) {
+        tmpElem = front();
+        remove();
+        tmp.add(tmpElem);                                                                                                                            
+    }
+
+    while (!tmp.empty()) {
+        tmpElem = tmp.front();
+        tmp.remove();
+
+        CNode<E>* node = new CNode<E>;
+        node->elem = tmpElem;
+        node->next = NULL;
+        if (!firstHeadFlag) {
+            firstHead = node;
+            firstHeadFlag = true;
+        } else
+            oldNode->next = node;
+
+        oldNode = node;
+    }
+
+    cursor = oldNode;
+    if (cursor != NULL)
+        cursor->next = firstHead;
 }
 
