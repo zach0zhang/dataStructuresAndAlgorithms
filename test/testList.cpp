@@ -99,6 +99,14 @@ static void testCircularlyLinkedList()
         assert(cList.front() == i);
         cList.remove();
     }
+
+    for (int i = loopNum; i < loopNum; i++)
+        cList.add(i);
+    cList.reverse();
+    for (int i = loopNum; i < loopNum; i++) {
+        assert(cList.front() == i);
+        cList.remove();
+    }
     
 }
 
