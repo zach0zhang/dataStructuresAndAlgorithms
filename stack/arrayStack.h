@@ -1,15 +1,15 @@
 #include "stack.h"
 
 template <typename E>
-class arrayStack {
+class ArrayStack {
     enum { DEF_CAPACITY = 100};
 public:
-    arrayStack(int cap = DEF_CAPACITY);
+    ArrayStack(int cap = DEF_CAPACITY);
     int size() const;
     bool empty() const;
-    const E& top() const throw();
-    void push(const E& e) throw();
-    void pop() throw();
+    const E& top() const;
+    void push(const E& e);
+    void pop();
 private:
     E* S;
     int capacity;
@@ -17,7 +17,7 @@ private:
 };
 
 template <typename E>
-arrayStack<E>::arrayStack(int cap)
+ArrayStack<E>::ArrayStack(int cap)
 {
     S = new E[cap];
     capacity = cap;
@@ -25,33 +25,33 @@ arrayStack<E>::arrayStack(int cap)
 }
 
 template <typename E>
-int arrayStack<E>::size() const
+int ArrayStack<E>::size() const
 {
     return (t + 1);
 }
 
 template <typename E>
-bool arrayStack<E>::empty() const
+bool ArrayStack<E>::empty() const
 {
     return (t < 0);
 }
 
 template <typename E>
-const E& arrayStack<E>::top() const throw() {
+const E& ArrayStack<E>::top() const {
     if (empty())
         throw StackEmpty("Top of empty statck");
     return S[t];
 }
 
 template <typename E>
-void arrayStack<E>::push(const E& e) throw() {
+void ArrayStack<E>::push(const E& e) {
     if (size() == capacity)
         throw StackFull("Push to full stack");
     S[++t] = e;
 }
 
 template <typename E>
-void arrayStack<E>::pop() throw() {
+void ArrayStack<E>::pop() {
     if (empty())
         throw StackEmpty("Pop from empty stack");
     --t;

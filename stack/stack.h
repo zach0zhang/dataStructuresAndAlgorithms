@@ -1,3 +1,6 @@
+#ifndef __STACK_H__
+#define __STACK_H__
+
 #include <stdexcept>
 #include <string>
 
@@ -23,3 +26,4 @@ public:
     void pop() throw(StackEmpty);
 };
 */
+#endif
