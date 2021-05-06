@@ -1,7 +1,7 @@
 P_NAME			:= testAll
 P_SRCS			:= $(wildcard *.cpp)
 P_OBJS			:= ${P_SRCS:.c=.o}
-P_INCLUDE		:= ../list ../stack ../queue
+P_INCLUDE		:= ../list ../stack ../queue ../vector
 CXX				:= g++
 CFLAGS			:= -g -Wall -O2
 CPPFLAGS		:= $(CFLAGS)
