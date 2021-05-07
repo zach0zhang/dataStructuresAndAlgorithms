@@ -4,6 +4,7 @@
 #include "SinglyLinkedList.h"
 #include "DoublyLinkedList.h"
 #include "CircularlyLinkedList.h"
+#include "NodeList.h"
 
 #define loopNum 50
 
@@ -110,6 +111,29 @@ static void testCircularlyLinkedList()
     
 }
 
+static void testListIterator()
+{
+    NodeList<int> myNodeList;
+    int sum = 0;
+    typedef NodeList<int>::Iterator it;
+
+    assert(myNodeList.size() == 0);
+    assert(myNodeList.empty() == true);
+
+    for (int i = 0; i < loopNum; i++) {
+        myNodeList.insertBack(i);
+        sum += i;
+    }
+
+    for (it p = myNodeList.begin(); p != myNodeList.end(); ++p)
+        sum -= *p;
+
+    assert(sum == 0);
+
+    for (int i = 0; i < loopNum; i++)
+        myNodeList.eraseFront();
+}
+
 void testList()
 {
     cout << "test single list" << endl;
@@ -120,4 +144,7 @@ void testList()
 
     cout << "test circle list" << endl;
     testCircularlyLinkedList();
+
+    cout << "test list iterator" << endl;
+    testListIterator();
 }

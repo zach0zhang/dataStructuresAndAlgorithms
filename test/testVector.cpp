@@ -57,6 +57,23 @@ static void testArrayVector()
 
 }
 
+static void testVectorIterator()
+{
+    vector<int> myVector;
+    int sum = 0;
+    typedef vector<int>::iterator Iterator;
+
+    for (int i = 0; i < NUM; i++) {
+        myVector.push_back(i);
+        sum += i;
+    }
+    
+    for (Iterator p = myVector.begin(); p != myVector.end(); ++p)
+        sum -= *p;
+
+    assert(sum == 0);
+}   
+
 void testVector()
 {
     cout << "test vector with stl" << endl;
@@ -64,4 +81,7 @@ void testVector()
 
     cout << "test array vector" <<endl;
     testArrayVector();
+
+    cout << "test vector iterator" << endl;
+    testVectorIterator();
 }
