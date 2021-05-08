@@ -5,6 +5,7 @@
 
 #include "LinkedQueue.h"
 #include "LinkedDeque.h"
+#include "NodeSequence.h"
 
 using namespace std;
 
@@ -130,6 +131,35 @@ static void testLinkedDeque()
     }
 }
 
+static void testNodeQuence()
+{
+    NodeSequence<int> mySequence;
+
+    assert(mySequence.size() == 0);
+    assert(mySequence.empty() == true);
+
+    for (int i = 0; i < NUM; i++)
+        mySequence.insertBack(i);
+
+    for (int i = 0; i < NUM; i++)
+        assert(*mySequence.atIndex(i) == i);
+
+    for (int i = 0; i < NUM; i++)
+        mySequence.eraseFront();
+
+    assert(mySequence.size() == 0);
+    assert(mySequence.empty() == true);
+
+    for (int i = 0; i < NUM; i++)
+        mySequence.insertFront(i);
+
+
+    mySequence.intBubbleSort1();
+    for (int i = 0; i < NUM; i++)
+        assert(*mySequence.atIndex(i) == i);
+
+}
+
 void testQueue()
 {
     cout << "test queue with stl" << endl;
@@ -140,4 +170,7 @@ void testQueue()
 
     cout << "test linked deque" << endl;
     testLinkedDeque();
+
+    cout << "test sequence" << endl;
+    testNodeQuence();
 }
