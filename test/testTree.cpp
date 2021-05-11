@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cassert>
 #include "LinkedBinaryTree.h"
+#include "VectorCompleteTree.h"
 
 using namespace std;
 
@@ -38,8 +39,52 @@ static void testLinkedBinaryTree()
     }
 }
 
+static void testVectorCompleteTree()
+{
+    VectorCompleteTree<int> myTree;
+    VectorCompleteTree<int>::Position p;
+
+    assert(myTree.size() == 0);
+
+    for (int i = 0; i < NUM; i++) {
+        myTree.addList(i);
+        assert(*myTree.last() == i);
+    }
+
+    p = myTree.root();
+    assert(myTree.isRoot(p) == true);
+
+    for (int i = 0; i < 10; i++) {
+        p++;
+        assert(myTree.hasLeft(p) == true);
+        assert(myTree.hasRight(p) == true);
+        assert(*myTree.left(p) == 2 * (i+2) - 1);
+        assert(*myTree.right(p) == 2 * (i+2));
+
+    }
+
+    p = myTree.root() + NUM - 1;
+    assert(myTree.hasLeft(p) == false);
+    assert(myTree.hasRight(p) == false);
+
+
+    assert(*myTree.root() == 0);
+    myTree.swap(myTree.root(), (myTree.root() + NUM - 1));
+    assert(*myTree.root() == 49);
+    
+    for ( int i = 0; i < NUM; i++)
+        myTree.removeLast();
+
+    assert(myTree.size() == 0);
+
+
+}
+
 void testTree()
 {
     cout << "test Linked binary tree" << endl;
     testLinkedBinaryTree();
+
+    cout << "test vector complete tree" << endl;
+    testVectorCompleteTree();
 }
