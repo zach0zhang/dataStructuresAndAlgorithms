@@ -7,6 +7,7 @@
 #include "LinkedDeque.h"
 #include "NodeSequence.h"
 #include "ListPriorityQueue.h"
+#include "HeapPriorityQueue.h"
 
 using namespace std;
 
@@ -220,6 +221,27 @@ static void testListPriorityQueue()
     }
 }
 
+static void testHeapPriorityQueue()
+{
+    HeapPriorityQueue<int, intLess> myQueue;
+
+    assert(myQueue.empty() == true);
+    assert(myQueue.size() == 0);
+
+    for (int i = 0; i < 10; i++)
+        myQueue.insert(i);
+    for (int i = 20; i >= 10; i--)
+        myQueue.insert(i);
+    for (int i = 21; i < NUM; i++)
+        myQueue.insert(i);
+    
+
+    for (int i = 0; i < NUM; i++) {
+        assert(myQueue.min() == i);
+        myQueue.removeMin();
+    }
+}
+
 void testQueue()
 {
     cout << "test queue with stl" << endl;
@@ -239,4 +261,7 @@ void testQueue()
 
     cout << "test list priority queue" << endl;
     testListPriorityQueue();
+
+    cout << "test heap priority queue" << endl;
+    testHeapPriorityQueue();
 }
