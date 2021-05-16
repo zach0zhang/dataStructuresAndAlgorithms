@@ -16,7 +16,7 @@ public:
     Position right(const Position& p) { return pos(2*idx(p) + 1); }
     Position parent(const Position& p) { return pos(idx(p) / 2); }
     bool hasLeft(const Position& p) const { return 2 * idx(p) <= size(); }
-    bool hasRight(const Position& p) const { return 2 * idx(p) <= size(); }
+    bool hasRight(const Position& p) const { return 2 * idx(p) + 1 <= size(); }
     bool isRoot(const Position& p) const { return idx(p) == 1; }
     Position root() { return pos(1); }
     Position last() { return pos(size()); }
