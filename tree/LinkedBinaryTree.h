@@ -24,7 +24,7 @@ public:
         Position parent() const { return Position(v->par); }
         bool isRoot() const { return v->par == NULL; }
         bool isExternal() const { return v->left == NULL && v->right == NULL; }
-        friend class LinkedBinaryTree<E>;
+        friend class LinkedBinaryTree;
     };
     typedef std::list<Position> PositionList;
 

@@ -8,6 +8,7 @@
 #include "NodeSequence.h"
 #include "ListPriorityQueue.h"
 #include "HeapPriorityQueue.h"
+#include "AdaptPriorityQueue.h"
 
 using namespace std;
 
@@ -242,6 +243,45 @@ static void testHeapPriorityQueue()
     }
 }
 
+static void testAdaptPriorityQueue()
+{
+    AdaptPriorityQueue<int, intLess> myQueue;
+    typedef AdaptPriorityQueue<int, intLess>::Position Position;
+    Position pos, pos20;
+
+    assert(myQueue.empty() == true);
+    assert(myQueue.size() == 0);
+
+    for (int i = 0; i < 10; i++) {
+        pos = myQueue.insert(i);
+        assert(*pos == i);
+    }
+
+    pos20 = myQueue.insert(20);
+    assert(*pos20 == 20);
+
+    for (int i = 19; i >= 10; i--) {
+        pos = myQueue.insert(i);
+        assert(*pos == i);
+    }
+    for (int i = 21; i < NUM; i++) {
+        pos = myQueue.insert(i);
+        assert(*pos == i);
+    }
+
+    pos = myQueue.replace(pos20, 30);
+    assert(*pos == 30);
+    myQueue.remove(pos);
+    myQueue.insert(20);
+    
+
+    for (int i = 0; i < NUM; i++) {
+        assert(myQueue.min() == i);
+        myQueue.removeMin();
+    }
+
+}
+
 void testQueue()
 {
     cout << "test queue with stl" << endl;
@@ -264,4 +304,7 @@ void testQueue()
 
     cout << "test heap priority queue" << endl;
     testHeapPriorityQueue();
+
+    cout << "test adapt priority queue" << endl;
+    testAdaptPriorityQueue();
 }
