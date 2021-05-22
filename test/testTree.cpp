@@ -2,6 +2,7 @@
 #include <cassert>
 #include "LinkedBinaryTree.h"
 #include "VectorCompleteTree.h"
+#include "SearchTree.h"
 
 using namespace std;
 
@@ -80,6 +81,60 @@ static void testVectorCompleteTree()
 
 }
 
+static void testSearchTree()
+{
+    Entry<int, string> pair;
+    SearchTree<Entry<int, string>> myTree;
+    SearchTree<Entry<int, string>>::Iterator p = myTree.begin();
+
+    int keyList[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    string valueList[10] = {"zero", "one", "two", "three", "four"\
+                        "five", "six", "seven", "eight", "nine"};
+
+    assert(myTree.empty() == true);
+    assert(myTree.size() == 0);
+
+    for (int i = 0; i < 10; i++) {
+        p = myTree.insert(keyList[i], valueList[i]);
+        pair = *p;
+        assert(pair.key() == keyList[i]);
+        assert(pair.value() == valueList[i]);
+    }
+
+    assert(myTree.empty() == false);
+    assert(myTree.size() == 10);
+
+    for (int i = 0; i < 10; i++) {
+        p = myTree.find(keyList[i]);
+        assert((*p).value() == valueList[i]);
+    }
+    p = myTree.find(10);
+    assert(myTree.end() == p);
+
+    myTree.erase(9);
+    assert(myTree.size() == 9);
+    p = myTree.find(8);
+    myTree.erase(p);
+
+    try {
+        myTree.erase(8);
+    } catch(NonexistentElement& e) {
+        string strTmp = e.what();
+        assert(strTmp == "Erase of nonexistent");
+    }
+
+    myTree.insert(keyList[9], valueList[9]);
+    myTree.insert(keyList[10], valueList[10]);
+    p = myTree.begin();
+    while (!(p==myTree.end())) {
+        myTree.erase(p);
+        ++p;
+    }
+
+    assert(myTree.empty() == true);
+    assert(myTree.size() == 0);
+}
+
 void testTree()
 {
     cout << "test Linked binary tree" << endl;
@@ -87,4 +142,7 @@ void testTree()
 
     cout << "test vector complete tree" << endl;
     testVectorCompleteTree();
+
+    cout << "test search tree" << endl;
+    testSearchTree();
 }
