@@ -7,6 +7,7 @@ extern void testStack();
 extern void testQueue();
 extern void testVector();
 extern void testTree();
+extern void testMap();
 
 int main(int argc, char *argv[])
 {
@@ -24,6 +25,9 @@ int main(int argc, char *argv[])
 
     cout << "Performing test for tree" << endl;
     testTree();
+
+    cout << "Performing test for map" << endl;
+    testMap();
 
     return 0;
 }
