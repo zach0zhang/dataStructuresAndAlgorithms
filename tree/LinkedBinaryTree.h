@@ -1,3 +1,5 @@
+#ifndef __LINKED_BINARY_TREE__
+#define __LINKED_BINARY_TREE__
 #include <list>
 #include <queue>
 
@@ -19,11 +21,14 @@ public:
     public:
         Position(Node* _v = NULL) : v(_v) { }
         E& operator*() { return v->elt; }
+        E* operator->() const { return &v->elt; }
+        bool operator==(const Position& p) const { return v == p.v; }
         Position left() const { return Position(v->left); }
         Position right() const { return Position(v->right); }
         Position parent() const { return Position(v->par); }
         bool isRoot() const { return v->par == NULL; }
         bool isExternal() const { return v->left == NULL && v->right == NULL; }
+        bool isInternal() const { return v->left != NULL || v->right != NULL; }
         friend class LinkedBinaryTree;
     };
     typedef std::list<Position> PositionList;
@@ -174,3 +179,4 @@ typename LinkedBinaryTree<E>::PositionList LinkedBinaryTree<E>::levelOrder() con
     }
     return PositionList(pl);
 }
+#endif
