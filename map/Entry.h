@@ -1,5 +1,16 @@
-#ifndef __ENTRY_H__
-#define __ENTRY_H__
+#ifndef __MAP_ENTRY_H__
+#define __MAP_ENTRY_H__
+
+#include <stdexcept>
+#include <string>
+
+using namespace std;
+
+class NonexistentElement : public runtime_error {
+public:
+    NonexistentElement(const string& err) : runtime_error(err) { }
+};
+
 
 template <typename K, typename V>
 class Entry {
@@ -16,6 +27,5 @@ private:
     K _key;
     V _value;
 };
-
 
 #endif

@@ -123,8 +123,9 @@ static void testSearchTree()
         assert(strTmp == "Erase of nonexistent");
     }
 
+
+    myTree.insert(keyList[8], valueList[8]);
     myTree.insert(keyList[9], valueList[9]);
-    myTree.insert(keyList[10], valueList[10]);
     p = myTree.begin();
     while (!(p==myTree.end())) {
         myTree.erase(p);
