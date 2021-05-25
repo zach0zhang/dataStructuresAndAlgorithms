@@ -1,15 +1,7 @@
 #include "LinkedBinaryTree.h"
 #include "Entry.h"
 
-#include <stdexcept>
-#include <string>
-
 using namespace std;
-
-class NonexistentElement : public runtime_error {
-public:
-    NonexistentElement(const string& err) : runtime_error(err) { }
-};
 
 
 template <typename E>

@@ -88,7 +88,7 @@ static void testSearchTree()
     SearchTree<Entry<int, string>>::Iterator p = myTree.begin();
 
     int keyList[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    string valueList[10] = {"zero", "one", "two", "three", "four"\
+    string valueList[10] = {"zero", "one", "two", "three", "four",\
                         "five", "six", "seven", "eight", "nine"};
 
     assert(myTree.empty() == true);
